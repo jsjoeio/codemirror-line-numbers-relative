@@ -1,4 +1,4 @@
-index.ts
+/src
 /node_modules
 .tern-*
 tsconfig.json
