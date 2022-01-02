@@ -1,26 +1,35 @@
-# Vim keybindings for CM6
+# Relative Line Numbers for CM6
 
 ## Installation
 
-`npm i @replit/codemirror-vim`
+```shell
+yarn add codemirror-line-numbers-relative
+```
 
 ## Usage
 
 ```js
-import { basicSetup, EditorState } from '@codemirror/basic-setup';
-import { EditorView } from '@codemirror/view';
-import { vim } from "@replit/codemirror-vim"
+import { EditorView } from "@codemirror/view";
+import { EditorState } from "@codemirror/state";
+import { lineNumbersRelative } from "codemirror-line-numbers-relative";
 
 new EditorView({
-    state: EditorState.create({
-      doc: "",
-      extensions: [
-        // make sure vim is included before other keymaps
-        vim(), 
-        // include the default keymap and all other keymaps you want to use in insert mode
-        basicSetup, 
-      ]
-    }),
-    parent: document.querySelector('#editor'),
-})
+  state: EditorState.create({
+    doc: `hello world!
+who doesn't love relative line numbers?`,
+    extensions: [lineNumbersRelative()],
+  }),
+  parent: document.querySelector("#editor"),
+});
 ```
+
+## Credit
+
+This wouldn't be possible these resources:
+
+- [updateListener example](https://gist.github.com/dralletje/058fe51415fe7dbac4709a65c615b52e#file-awesome-line-wrapping-js-L32-L44)
+- [How to make a code editor with CodeMirror 6](https://www.raresportan.com/how-to-make-a-code-editor-with-codemirror6/)
+- [Codemirror 6: Offset line numbers](https://discuss.codemirror.net/t/codemirror-6-offset-line-numbers/2675/2)
+- [Relative (VIM style?) Line Numbers?](https://discuss.codemirror.net/t/relative-vim-style-line-numbers/2855)
+- [relative line numbers cm5](https://github.com/codemirror/CodeMirror/issues/4116#issuecomment-426877029)
+- [@replit/codemirror-vim](https://github.com/replit/codemirror-vim)
