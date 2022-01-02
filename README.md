@@ -8,6 +8,8 @@ yarn add codemirror-line-numbers-relative
 
 ## Usage
 
+[![Edit cm6-relative-line-numbers-ts (with package)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/cm6-relative-line-numbers-ts-with-package-tud4i?fontsize=14&hidenavigation=1&theme=dark)
+
 ```js
 import { EditorView } from "@codemirror/view";
 import { EditorState } from "@codemirror/state";
