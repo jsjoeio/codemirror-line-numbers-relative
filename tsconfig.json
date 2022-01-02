@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "allowJs": false,
+        "checkJs": false, 
+        "lib": ["es6", "dom", "scripthost"],
+        "stripInternal": true,
+        "typeRoots": ["./node_modules/@types"],
+        "noUnusedLocals": true,
+        "strict": true,
+        "target": "es6",
+        "module": "es2020",
+        "newLine": "lf",
+        "moduleResolution": "node",
+    },
+    "include": [
+        "index.ts"
+    ]
+}
