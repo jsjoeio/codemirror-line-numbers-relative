@@ -1,6 +1,6 @@
 {
   "name": "codemirror-line-numbers-relative",
-  "version": "0.19.3-beta.3",
+  "version": "0.19.3-beta.4",
   "description": "Relative line numbers for CodeMirror 6",
   "scripts": {
     "build": "cm-buildhelper src/index.ts"
