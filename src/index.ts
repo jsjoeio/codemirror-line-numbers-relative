@@ -1,9 +1,43 @@
 import { Extension } from "@codemirror/state";
 import { EditorView, ViewUpdate } from "@codemirror/view";
 import { Compartment, EditorState } from "@codemirror/state";
-import { lineNumbers } from "@codemirror/gutter";
+import { lineNumbers, gutter, GutterMarker } from "@codemirror/gutter";
 
-let gutter = new Compartment();
+let relativeLineNumberGutter = new Compartment();
+
+class Marker extends GutterMarker {
+  /** The text to render in gutter */
+  text: string;
+
+  constructor(text: string) {
+    super();
+    this.text = text;
+  }
+
+  toDOM() {
+    return document.createTextNode(this.text);
+  }
+}
+
+export const absoluteLineNumberGutter = gutter({
+  lineMarker: (view, line) => {
+    const lineNo = view.state.doc.lineAt(line.from).number;
+    const absoluteLineNo = new Marker(lineNo.toString());
+    const cursorLine = view.state.doc.lineAt(
+      view.state.selection.asSingle().ranges[0].to
+    ).number;
+
+    if (lineNo === cursorLine) {
+      return absoluteLineNo;
+    }
+
+    return null;
+  },
+  initialSpacer: () => {
+    const spacer = new Marker("0");
+    return spacer;
+  },
+});
 
 function relativeLineNumbers(lineNo: number, state: EditorState) {
   if (lineNo > state.doc.lines) {
@@ -19,7 +53,7 @@ function relativeLineNumbers(lineNo: number, state: EditorState) {
   }
 }
 // This shows the numbers in the gutter
-const showLineNumbers = gutter.of(
+const showLineNumbers = relativeLineNumberGutter.of(
   lineNumbers({ formatNumber: relativeLineNumbers })
 );
 
@@ -29,7 +63,7 @@ const lineNumbersUpdateListener = EditorView.updateListener.of(
   (viewUpdate: ViewUpdate) => {
     if (viewUpdate.selectionSet) {
       viewUpdate.view.dispatch({
-        effects: gutter.reconfigure(
+        effects: relativeLineNumberGutter.reconfigure(
           lineNumbers({ formatNumber: relativeLineNumbers })
         ),
       });
@@ -38,5 +72,5 @@ const lineNumbersUpdateListener = EditorView.updateListener.of(
 );
 
 export function lineNumbersRelative(): Extension {
-  return [showLineNumbers, lineNumbersUpdateListener];
+  return [absoluteLineNumberGutter, showLineNumbers, lineNumbersUpdateListener];
 }
