@@ -41,13 +41,13 @@ const absoluteLineNumberGutter = gutter({
 
 function relativeLineNumbers(lineNo: number, state: EditorState) {
   if (lineNo > state.doc.lines) {
-    return lineNo.toString();
+    return " ";
   }
   const cursorLine = state.doc.lineAt(
     state.selection.asSingle().ranges[0].to
   ).number;
   if (lineNo === cursorLine) {
-    return lineNo.toString();
+    return " ";
   } else {
     return Math.abs(cursorLine - lineNo).toString();
   }
