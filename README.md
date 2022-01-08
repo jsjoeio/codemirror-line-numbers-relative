@@ -34,4 +34,5 @@ This wouldn't be possible these resources:
 - [Codemirror 6: Offset line numbers](https://discuss.codemirror.net/t/codemirror-6-offset-line-numbers/2675/2)
 - [Relative (VIM style?) Line Numbers?](https://discuss.codemirror.net/t/relative-vim-style-line-numbers/2855)
 - [relative line numbers cm5](https://github.com/codemirror/CodeMirror/issues/4116#issuecomment-426877029)
+- [Line number or text in blockinfo?](https://discuss.codemirror.net/t/line-number-or-text-in-blockinfo/3775/3)
 - [@replit/codemirror-vim](https://github.com/replit/codemirror-vim)
