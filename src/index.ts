@@ -7,13 +7,13 @@ let gutter = new Compartment();
 
 function relativeLineNumbers(lineNo: number, state: EditorState) {
   if (lineNo > state.doc.lines) {
-    return "0";
+    return lineNo.toString();
   }
   const cursorLine = state.doc.lineAt(
     state.selection.asSingle().ranges[0].to
   ).number;
   if (lineNo === cursorLine) {
-    return "0";
+    return lineNo.toString();
   } else {
     return Math.abs(cursorLine - lineNo).toString();
   }
