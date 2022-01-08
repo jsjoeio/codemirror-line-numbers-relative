@@ -19,7 +19,7 @@ class Marker extends GutterMarker {
   }
 }
 
-export const absoluteLineNumberGutter = gutter({
+const absoluteLineNumberGutter = gutter({
   lineMarker: (view, line) => {
     const lineNo = view.state.doc.lineAt(line.from).number;
     const absoluteLineNo = new Marker(lineNo.toString());
